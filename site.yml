@@ -7,4 +7,4 @@
 
 
   roles:
-    - jdk
+    - fmwInfrastructure_12.2.1.3.0

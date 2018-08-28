@@ -1,0 +1,19 @@
+---
+# This playbook installs Fusion Middleware Infrastructure Home 12.2.1.3.0
+
+
+- name: Copy Response file from the template
+  template:
+    src: templates/fmwInfrastructure_12213.rsp.j2
+    dest: '/home/{{ fmw_owner }}/fmwInfrastructure_12213.rsp'
+    owner: '{{ fmw_owner }}'
+
+
+- name: Unzip FMW_ZIP
+  unarchive:
+    remote_src: '{{ fmw_zip }}'
+    dest: '{{ fmw_zip | dirname }}'
+
+
+- name: Set up FMW Infrastructure
+  command: '{{ java_home }}/bin/java -jar {{ fmw_zip | dirname }}/fmw_12.2.1.3.0_infrastructure.jar -silent -responseFile /home/{{ fmw_owner }}/fmwInfrastructure_12213.rsp'
