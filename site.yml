@@ -3,7 +3,7 @@
 
 - name: Install Oracle JDK
   hosts: all
-  remote_user: fusion
+  remote_user: '{{ fmw_owner }}'
 
 
   roles:
