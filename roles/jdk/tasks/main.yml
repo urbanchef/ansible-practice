@@ -3,11 +3,11 @@
 
 - name: Create java base directory
   file:
-    path: {{ java_base }}
+    path: "{{ java_base }}"
     state: directory
     mode: 0755
 
 - name: Unzip Oracle JDK
   unarchive:
-    src: {{ java_tgz_path }}
-    dest: {{ java_base }}
+    src: "{{ java_tgz_path }}"
+    dest: "{{ java_base }}"
