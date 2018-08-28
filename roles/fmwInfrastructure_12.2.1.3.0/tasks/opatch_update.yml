@@ -1,0 +1,14 @@
+---
+# This playbook will update OPatch from the specified zip archive
+
+
+- name: Unzip opatch archive to stage location
+  unarchive:
+    remote_src: yes
+    src: '{{ opatch_zip }}'
+    dest: '{{ opatch_zip | dirname }}'
+    creates: '{{ opatch_zip | dirname }}/6880880/opatch_generic.jar'
+
+
+- name: Update OPatch
+  command: '{{ java_home }}/bin/java -jar {{ opatch_zip | dirname }}/6880880/opatch_generic.jar -silent oracle_home={{ fmw_home }} -invPtrLoc /home/{{ fmw_owner }}/oraInst.loc'

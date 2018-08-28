@@ -1,1 +1,1 @@
-
+java_tgz_path: '{{ vars["distrib_dir"] }}/java/jdk-8u171-linux-x64.tar.gz'

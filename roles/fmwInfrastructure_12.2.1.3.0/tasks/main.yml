@@ -21,7 +21,16 @@
     remote_src: yes
     src: '{{ fmw_zip }}'
     dest: '{{ fmw_zip | dirname }}'
+    creates: '{{ fmw_zip | dirname }}/fmw_12.2.1.3.0_infrastructure.jar'
 
 
 - name: Set up FMW Infrastructure
   command: '{{ java_home }}/bin/java -jar {{ fmw_zip | dirname }}/fmw_12.2.1.3.0_infrastructure.jar -silent -invPtrLoc /home/{{ fmw_owner }}/oraInst.loc -responseFile /home/{{ fmw_owner }}/fmwInfrastructure_12213.rsp'
+
+
+- name: Update OPatch
+  include_tasks: opatch_update.yml
+
+
+- name: Apply PSU
+  include_tasks: psu_apply.yml
