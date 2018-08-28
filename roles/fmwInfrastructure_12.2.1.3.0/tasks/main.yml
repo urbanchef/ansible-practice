@@ -11,7 +11,8 @@
 
 - name: Unzip FMW_ZIP
   unarchive:
-    remote_src: '{{ fmw_zip }}'
+    remote_src: yes
+    src: '{{ fmw_zip }}'
     dest: '{{ fmw_zip | dirname }}'
 
 
