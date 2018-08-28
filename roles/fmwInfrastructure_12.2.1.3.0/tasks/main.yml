@@ -7,7 +7,6 @@
     src: templates/fmwInfrastructure_12213.rsp.j2
     dest: '/home/{{ fmw_owner }}/fmwInfrastructure_12213.rsp'
     owner: '{{ fmw_owner }}'
-    group: '{{ fmw_group_owner }}'
 
 
 - name: Copy oraInst.loc file from the template
@@ -15,7 +14,6 @@
     src: templates/oraInst.loc.j2
     dest: /home/{{ fmw_owner }}/oraInst.loc
     owner: '{{ fmw_owner }}'
-    group: '{{ fmw_group_owner }}'
 
 
 - name: Unzip FMW_ZIP
