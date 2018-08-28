@@ -2,13 +2,17 @@
 # This playbook will apply a specified PSU to a newly installed FMW_HOME
 
 
-- name: Work out PSU patch number based on psu_zip
-
-
-
 - name: Unzip PSU
   unarchive:
     remote_src: yes
     src: '{{ psu_zip }}'
     dest: '{{ psu_zip | dirname }}'
-    creates: '{{ psu_zip | dirname }}/6880880/opatch_generic.jar'
+    creates: '{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}'
+
+
+- name: Change to patch stage directory
+  command: chdir='{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}'
+
+
+- name: Apply PSU
+  command: '{{ fmw_home }}/OPatch/opatch apply'
