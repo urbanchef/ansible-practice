@@ -1,13 +1,21 @@
 ---
 # This playbook contains plays that will install Oracle jdk from already downloaded .tar.gz file
 
+
+- name: Check if JDK has already been deployed
+  stat:
+    path: '{{ java_home }}'
+  register: stat_result
+
 - name: Create java base directory
   file:
     path: "{{ java_base }}"
     state: directory
     mode: 0755
+  when: stat_result.stat.exists == False
 
 - name: Unzip Oracle JDK
   unarchive:
     src: "{{ java_tgz_path }}"
     dest: "{{ java_base }}"
+  when: stat_result.stat.exists == False
