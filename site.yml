@@ -1,0 +1,9 @@
+---
+# This playbook deploys Oracle FMW 12.2.1.3 infrastructure home
+
+- name: Install Oracle JDK
+  hosts: all
+  remote_user: fusion
+
+  roles:
+    - jdk
