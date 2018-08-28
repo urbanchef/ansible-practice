@@ -1,4 +1,4 @@
 distrib_dir: /mnt/distrib
-java_base: /sgm/java
+java_base: /sgm/java_test
 java_home: '{{ vars["java_base"] }}/jdk1.8.0_171'
 java_tgz_path: '{{ vars["distrib_dir"] }}/java/jdk-8u171-linux-x64.tar.gz'
