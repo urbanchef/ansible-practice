@@ -7,11 +7,11 @@
     remote_src: yes
     src: '{{ psu_zip }}'
     dest: '{{ psu_zip | dirname }}'
-    creates: "{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}"
+    creates: "{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }}"
 
 
 - name: Change to patch stage directory
-  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}"
+  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }}"
 
 
 - name: Apply PSU
