@@ -10,9 +10,5 @@
     creates: "{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }}"
 
 
-- name: Change to patch stage directory
-  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }}"
-
-
-- name: Apply PSU
-  command: '{{ fmw_home }}/OPatch/opatch apply'
+- name: OPatch apply PSU
+  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }} && {{ fmw_home }}/OPatch/opatch apply"
