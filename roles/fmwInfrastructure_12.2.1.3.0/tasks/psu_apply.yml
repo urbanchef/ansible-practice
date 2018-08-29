@@ -11,4 +11,6 @@
 
 
 - name: OPatch apply PSU
-  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }} && {{ fmw_home }}/OPatch/opatch apply"
+  shell: "{{ fmw_home }}/OPatch/opatch apply -silent"
+  args:
+    chdir: "{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('(p)([0-9]*)(_[0-9].*zip)', '\\2') }}"
