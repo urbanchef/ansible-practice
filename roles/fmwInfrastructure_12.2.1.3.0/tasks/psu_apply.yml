@@ -11,7 +11,7 @@
 
 
 - name: Change to patch stage directory
-  command: chdir="{{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}"
+  command: "cd {{ psu_zip | dirname }}/{{ psu_zip | basename | regex_replace('^p.*[0-9](.*)', '\\1') }}"
 
 
 - name: Apply PSU
